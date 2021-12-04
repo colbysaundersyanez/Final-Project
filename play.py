@@ -19,7 +19,7 @@ def main():
         # You will need to change the constructors later to pass more
         # information to the Snake and Apple constructors
         room = Room(gui.get_width(), gui.get_height(), "#", "WHITE", "BLUE")
-        snake = Snake(gui,3)
+        snake = Snake(gui)
         apple = Apple()
         right = True
         up = False

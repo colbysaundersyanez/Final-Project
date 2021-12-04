@@ -18,7 +18,7 @@ pivotPointTwo = []
 tupList = []
 tempList = []
 class Snake:    
-    def __init__(self,gui,size,tail = 0):
+    def __init__(self,gui,size=3,tail = 0):
         self.size = size
         self.tail = tail
         tailSize.append(size)
@@ -74,8 +74,8 @@ class Snake:
                 for x in range(len(snakeShape)):
                     
                     #import Apple
-                    #gui.log(snakeShape)
-                    #gui.log("THIS IS WHATS BEING DRAWN:" + str(tupList))
+                    gui.log(snakeShape)
+                    gui.log("THIS IS WHATS BEING DRAWN:" + str(tupList))
                     if tupList[0][0] > len(entireBorderX)-(self.size+1):
                         self.borderHit(gui)
                     if tupList[0][0] < 1:
@@ -85,12 +85,23 @@ class Snake:
                     if tupList[0][1] < 1:
                         self.borderHit(gui)
                     #for x in reversed(range(self.size)):
-                    if tupList[self.size][0]-1 == apple.applePos[0] and tupList[self.size][1] == apple.applePosTwo[0]:
+                    var = self.size
+                    #gui.log(var)
+                    
+                    self.gui = gui.draw_text(snakeShape[x],tupList[x][0],tupList[x][1],"WHITE","BLUE")
+                    
+                if tupList[var][0]-1 == apple.applePos[0] and tupList[var][1] == apple.applePosTwo[0]:
                         gui.log("Touch")
                         apple.trueList.clear()
-                    self.gui = gui.draw_text(snakeShape[x],tupList[x][0],tupList[x][1],"WHITE","BLUE")
+                        self.grow(gui,1)
 
-    def grow(self,s):
+    def grow(self,gui,s):
+        #add = tupList[self.size]
+        tupList.append((tupList[0][0]+(self.size+s),tupList[0][1]))
+        snakeShape.insert(0,"+")
+        gui.log(snakeShape)
+        #gui.log(tupList)
+        #gui.log(str(tupList[self.size][0]+1)+ " " + str(tupList[self.size][1]))
         self.size = self.size + 1
         
 
@@ -105,10 +116,10 @@ class Snake:
             snakeShape.append(">")
             for x in range(0,len(snakeShape)+1):
                 newDir = (tupList[x][0]+1,tupList[x][1])
-                gui.log("NEWDIR" + str(newDir))
+                #gui.log("NEWDIR" + str(newDir))
                 tempList.append(newDir)
-            gui.log(tempList[:4])
-            for x in range(len(tempList[:4])):
+            #gui.log(tempList[:4])
+            for x in range(len(tempList[:len(tupList)])):
                 tupList.pop(x)
                 tupList.insert(x,tempList[x])
             tempList.clear()
@@ -126,7 +137,7 @@ class Snake:
                 newDir = (tupList[x][0],tupList[x][1]-1)
             #    gui.log("NEWDIR" + str(newDir))
                 tempList.append(newDir)
-            for x in range(len(tempList[:4])):
+            for x in range(len(tempList[:len(tupList)])):
                 tupList.pop(x)
                 tupList.insert(x,tempList[x])
             tempList.clear()    
@@ -136,10 +147,10 @@ class Snake:
             snakeShape.append("<")
             for x in range(0,len(snakeShape)+1):
                 newDir = (tupList[x][0]-1,tupList[x][1])
-                gui.log("NEWDIR" + str(newDir))
+                #gui.log("NEWDIR" + str(newDir))
                 tempList.append(newDir)
             gui.log(tempList[:4])
-            for x in range(len(tempList[:4])):
+            for x in range(len(tempList[:len(tupList)])):
                 tupList.pop(x)
                 tupList.insert(x,tempList[x])
             tempList.clear()
@@ -151,9 +162,9 @@ class Snake:
             for x in range(0,len(snakeShape)+1):
                 pivotAmount += 1
                 newDir = (tupList[x][0],tupList[x][1]+1)
-                gui.log("NEWDIR" + str(newDir))
+                #gui.log("NEWDIR" + str(newDir))
                 tempList.append(newDir)
-            for x in range(len(tempList[:4])):
+            for x in range(len(tempList[:len(tupList)])):
                 tupList.pop(x)
                 tupList.insert(x,tempList[x])
             tempList.clear() 
