@@ -19,7 +19,7 @@ def main():
         # You will need to change the constructors later to pass more
         # information to the Snake and Apple constructors
         room = Room(gui.get_width(), gui.get_height(), "#", "WHITE", "BLUE")
-        snake = Snake(gui)
+        snake = Snake(gui,3)
         apple = Apple()
         right = True
         up = False
@@ -62,9 +62,9 @@ def main():
             gui.clear()
             
             room.draw(gui)
-            if snake.appleEaten(gui) == True:
-                gui.log("SUCESSS")
-                apple.trueList.clear()
+            #if snake.appleEaten(gui) == True:
+            #    gui.log("SUCESSS")
+            #    apple.trueList.clear()
             if redraw == False:
                 apple.draw(gui)
         

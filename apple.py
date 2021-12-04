@@ -41,6 +41,8 @@ class Apple:
 
     def draw(self, gui):
         if bool(trueList) == False and redraw == False:
+            applePos.clear()
+            applePosTwo.clear()
             value = randint(4,gui.get_width()-4)
             valueTwo = randint(4,gui.get_height()-4)
             gui.draw_text("*",value,valueTwo,"WHITE","RED")
