@@ -77,11 +77,11 @@ class Snake:
                     #gui.log("THIS IS WHATS BEING DRAWN:" + str(tupList))
                     if tupList[0][0] > len(entireBorderX)-(self.size+1):
                         self.borderHit(gui)
-                    if tupList[0][0] < 2:
+                    if tupList[0][0] < 1:
                         self.borderHit(gui)
                     if tupList[0][1] > len(entireBorderY)-(self.size-1):
                         self.borderHit(gui)
-                    if tupList[0][1] < 2:
+                    if tupList[0][1] < 1:
                         self.borderHit(gui)
                     #for x in reversed(range(self.size)):
                     if tupList[self.size][0] == apple.applePos[0] and tupList [self.size][1] == apple.applePosTwo[0]:
