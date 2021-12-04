@@ -18,7 +18,7 @@ pivotPointTwo = []
 tupList = []
 tempList = []
 class Snake:    
-    def __init__(self,gui,size = 3,tail = 0):
+    def __init__(self,gui,size,tail = 0):
         self.size = size
         self.tail = tail
         tailSize.append(size)
@@ -50,6 +50,7 @@ class Snake:
     def draw(self, gui,pos=None, posTwo=None):
         import apple
         import play
+        self.size = self.size
         self.pos = pos
         self.posTwo = posTwo
         if len(entireBorderX) == 0:
@@ -84,14 +85,13 @@ class Snake:
                     if tupList[0][1] < 1:
                         self.borderHit(gui)
                     #for x in reversed(range(self.size)):
-                    if tupList[self.size][0] == apple.applePos[0] and tupList [self.size][1] == apple.applePosTwo[0]:
-                        pass
+                    if tupList[self.size][0]-1 == apple.applePos[0] and tupList[self.size][1] == apple.applePosTwo[0]:
+                        gui.log("Touch")
+                        apple.trueList.clear()
                     self.gui = gui.draw_text(snakeShape[x],tupList[x][0],tupList[x][1],"WHITE","BLUE")
 
-    def appleEaten(self,gui,bol=False):
-        self.bol = bol
-        gui.log(bol)
-        return bol
+    def grow(self,s):
+        self.size = self.size + 1
         
 
     def move(self,gui,up=0 ,down=0, left=0, right=0):
@@ -116,7 +116,7 @@ class Snake:
                 
         if self.up == 1:
             snakeShape.pop()
-            snakeShape.append("-")
+            snakeShape.append("^")
             #pivotAmount = 0
             #newAmount = (-1,0)
             #tupList.insert(0,tupList[0][:]
